@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Calendar, Clock , ArrowRight } from "lucide-react";
 
 export default function Home() {

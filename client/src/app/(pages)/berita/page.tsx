@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
 
@@ -80,7 +80,6 @@ export default function BeritaPage() {
                                 <Image
                                     src={featuredNews.imgURL}
                                     alt={featuredNews.title}
-                                    fill
                                     objectFit="cover"
                                     className="transform group-hover:scale-105 transition-transform duration-500"
                                 />
@@ -123,7 +122,6 @@ export default function BeritaPage() {
                                     <Image
                                         src={news.imgURL}
                                         alt={news.title}
-                                        fill
                                         objectFit="cover"
                                         className="transform group-hover:scale-105 transition-transform duration-500"
                                     />
