@@ -82,6 +82,7 @@ export default function BeritaPage() {
                                     alt={featuredNews.title}
                                     objectFit="cover"
                                     className="transform group-hover:scale-105 transition-transform duration-500"
+                                    layout="fill"
                                 />
                             </div>
                             {/* Detail Berita Utama */}
@@ -124,6 +125,7 @@ export default function BeritaPage() {
                                         alt={news.title}
                                         objectFit="cover"
                                         className="transform group-hover:scale-105 transition-transform duration-500"
+                                        layout="fill"
                                     />
                                 </div>
                                 <div className="mt-4">
