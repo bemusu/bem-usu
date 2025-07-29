@@ -1,14 +1,13 @@
-'use client'; // Wajib ada karena kita akan menggunakan state (useState)
+'use client'; 
 
 import React, { useState } from 'react';
 import Image from "next/image";
 import Link from "next/link";
+import { Handshake, Store, Menu, X } from 'lucide-react';
 
 export function Header() {
-    // State untuk mengelola visibilitas menu di mobile
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    // Daftar link navigasi untuk menghindari duplikasi kode
     const navLinks = [
         { href: "/", label: "Beranda" },
         { href: "/tentang", label: "Tentang" },
@@ -20,7 +19,7 @@ export function Header() {
     return (
         <header className="bg-white shadow-md sticky top-0 z-50">
             <div className="container mx-auto flex items-center justify-between px-4 py-3">
-                {/* Logo dan Nama Kabinet (menjadi link ke beranda) */}
+                {/* Logo dan Nama Kabinet */}
                 <Link href="/" className="flex items-center gap-3" onClick={() => setIsMenuOpen(false)}>
                     <Image 
                         src="/img/bem_usu.png" 
@@ -49,6 +48,14 @@ export function Header() {
                     ))}
                 </nav>
 
+                {/* Tombol Aksi untuk Desktop */}
+                <div className="hidden md:flex items-center gap-2">
+                    <Link href="/partnership" className="flex items-center gap-2 bg-cyan-700 text-white px-4 py-2 rounded-full hover:bg-cyan-800 transition-colors">
+                        <Handshake size={18} />
+                        <span>Partnership</span>
+                    </Link>
+                </div>
+
                 {/* Tombol Hamburger untuk Mobile */}
                 <div className="md:hidden">
                     <button 
@@ -56,14 +63,7 @@ export function Header() {
                         aria-label="Toggle Menu"
                         className="text-gray-800 focus:outline-none"
                     >
-                        {/* Ikon X jika menu terbuka, ikon hamburger jika tertutup */}
-                        <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            {isMenuOpen ? (
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-                            ) : (
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7" />
-                            )}
-                        </svg>
+                        {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
                 </div>
             </div>
@@ -77,11 +77,17 @@ export function Header() {
                                 key={link.href} 
                                 href={link.href} 
                                 className="block text-gray-600 hover:text-green-600 py-2 text-center"
-                                onClick={() => setIsMenuOpen(false)} // Otomatis tutup menu saat link diklik
+                                onClick={() => setIsMenuOpen(false)}
                             >
                                 {link.label}
                             </Link>
                         ))}
+                        <div className="flex flex-col gap-2 pt-4">
+                             <Link href="/partnership" className="flex items-center justify-center gap-2 bg-cyan-700 text-white px-4 py-2 rounded-full hover:bg-cyan-800 transition-colors">
+                                <Handshake size={18} />
+                                <span>Partnership</span>
+                            </Link>
+                        </div>
                     </div>
                 </nav>
             )}

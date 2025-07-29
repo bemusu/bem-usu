@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Calendar, Clock } from "lucide-react"; // import ikon
+import { Calendar, Clock , ArrowRight } from "lucide-react";
 
 export default function Home() {
     return (
@@ -47,11 +47,10 @@ export default function Home() {
                     className="px-4 md:px-12 py-24 bg-cover bg-center space-y-16"
                     style={{ backgroundImage: "url('/img/backgroundbem.png')" }}
                 >
-                    {/* Tentang BEM */}
                     <section className="py-8 px-4">
                         <div className="bg-white/50 backdrop-blur-md text-gray-800 rounded-2xl shadow-xl p-8 md:p-16 space-y-8 max-w-7xl mx-auto">
                             <div className="flex items-center justify-between">
-                                <h2 className="text-3xl md:text-4xl font-bold text-green-900">Tentang</h2>
+                                <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Tentang</h2>
                             </div>
                             <div className="flex flex-col lg:flex-row justify-between items-center gap-16">
                                 <div className="max-w-lg text-left">
@@ -76,9 +75,9 @@ export default function Home() {
                     <section className="py-8 px-4">
                         <div className="bg-white/50 backdrop-blur-md rounded-2xl text-black p-8 md:px-16 md:py-12 shadow-xl max-w-7xl mx-auto">
                             <div className="flex items-center justify-between mb-12">
-                                <h2 className="text-3xl md:text-4xl font-bold text-green-900">Trending News</h2>
-                                <button className="text-sm font-semibold text-green-900 hover:text-green-700 flex items-center gap-1 transition-transform duration-200">
-                                    VIEW ALL <span>↗</span>
+                                <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Trending News</h2>
+                                <button className="text-sm font-semibold text-slate-800 hover:text-slate-600 flex items-center gap-1 transition-transform duration-200">
+                                    VIEW ALL <span><ArrowRight /></span>
                                 </button>
                             </div>
 
@@ -129,3 +128,4 @@ export default function Home() {
         </>
     );
 }
+

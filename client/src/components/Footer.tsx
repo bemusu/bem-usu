@@ -2,8 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-// Impor semua ikon yang kita butuhkan
-import { FaInstagram, FaTwitter, FaYoutube, FaTiktok } from 'react-icons/fa';
+import { FaInstagram, FaTwitter, FaYoutube, FaTiktok, } from 'react-icons/fa';
 import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
 
 export function Footer() {
@@ -12,10 +11,7 @@ export function Footer() {
     return (
         <footer className="bg-white text-slate-800 border-t border-slate-200">
             <div className="max-w-7xl mx-auto px-6 py-12">
-                {/* Grid utama untuk 3 kolom */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
-                    
-                    {/* Kolom 1: Quick Links */}
                     <div className="md:text-left">
                         <h3 className="font-bold text-lg mb-4">Tautan Cepat</h3>
                         <ul className="space-y-3 text-slate-600">
@@ -27,7 +23,6 @@ export function Footer() {
                         </ul>
                     </div>
 
-                    {/* Kolom 2: Branding & Media Sosial */}
                     <div className="flex flex-col items-center">
                         <div className="flex items-center gap-4 mb-3">
                             <Image src="/img/bem_usu.png" alt="Logo BEM USU" width={50} height={50} />
@@ -36,7 +31,6 @@ export function Footer() {
                         <p className="font-bold text-base">Pemerintahan Mahasiswa</p>
                         <p className="text-sm text-slate-500">Universitas Sumatera Utara</p>
                         
-                        {/* Ikon Media Sosial */}
                         <div className="flex space-x-2 mt-5">
                             <a href="https://www.instagram.com/bemusu" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="bg-slate-800 text-white p-2 rounded-md hover:bg-green-600 transition-colors">
                                 <FaInstagram size={18} />
@@ -53,7 +47,6 @@ export function Footer() {
                         </div>
                     </div>
 
-                    {/* Kolom 3: Contact Info */}
                     <div className="md:text-left">
                         <h3 className="font-bold text-lg mb-4">Info Kontak</h3>
                         <address className="not-italic space-y-4 text-slate-600">
@@ -78,7 +71,6 @@ export function Footer() {
 
                 </div>
 
-                {/* Garis Pemisah dan Copyright */}
                 <hr className="border-slate-200 my-8" />
                 <div className="text-center text-sm text-slate-500">
                     <p>Copyright © {currentYear} BEM Universitas Sumatera Utara - All rights reserved.</p>
