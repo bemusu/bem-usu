@@ -50,9 +50,9 @@ export function Header() {
 
                 {/* Tombol Aksi untuk Desktop */}
                 <div className="hidden md:flex items-center gap-2">
-                    <Link href="/partnership" className="flex items-center gap-2 bg-cyan-700 text-white px-4 py-2 rounded-full hover:bg-cyan-800 transition-colors">
+                    <Link href="/prosedur" className="flex items-center gap-2 bg-cyan-700 text-white px-4 py-2 rounded-full hover:bg-cyan-800 transition-colors">
                         <Handshake size={18} />
-                        <span>Partnership</span>
+                        <span>Prosedur</span>
                     </Link>
                 </div>
 
@@ -83,9 +83,9 @@ export function Header() {
                             </Link>
                         ))}
                         <div className="flex flex-col gap-2 pt-4">
-                             <Link href="/partnership" className="flex items-center justify-center gap-2 bg-cyan-700 text-white px-4 py-2 rounded-full hover:bg-cyan-800 transition-colors">
+                             <Link href="/prosedur" className="flex items-center justify-center gap-2 bg-cyan-700 text-white px-4 py-2 rounded-full hover:bg-cyan-800 transition-colors">
                                 <Handshake size={18} />
-                                <span>Partnership</span>
+                                <span>Prosedur</span>
                             </Link>
                         </div>
                     </div>
