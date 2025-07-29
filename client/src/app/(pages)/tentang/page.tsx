@@ -3,12 +3,12 @@ import { Card } from "@/components/ui/card";
 import { ChevronRight, Award, Home, MessageSquare, BookOpen, Users, Search } from "lucide-react";
 
 const prokerUnggulan = [
-    { title: "SI BEM", image: "/img/news1.png", description : "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon:  <Award className="w-8 h-8 text-slate-800" /> },
-    { title: "BEM CONNECT", image: "/img/news.png", description : "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <Home className="w-8 h-8 text-slate-800" /> },
-    { title: "Rumah Prestasi dan Beasiswa", image: "/img/news2.png", description : "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <MessageSquare className="w-8 h-8 text-slate-800" /> },
-    { title: "Curhat Akademis", image: "/img/sports1.png", description : "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <BookOpen className="w-8 h-8 text-slate-800" /> },
-    { title: "BEM In Action", image: "/img/sports2.png", description : "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <Users className="w-8 h-8 text-slate-800" /> },
-    { title: "Arutala Fest", image: "/img/sports3.png", description : "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <Search className="w-8 h-8 text-slate-800" /> }, 
+    { title: "SI BEM", image: "/img/news1.png", description: "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <Award className="w-8 h-8 text-slate-800" /> },
+    { title: "BEM CONNECT", image: "/img/news.png", description: "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <Home className="w-8 h-8 text-slate-800" /> },
+    { title: "Rumah Prestasi dan Beasiswa", image: "/img/news2.png", description: "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <MessageSquare className="w-8 h-8 text-slate-800" /> },
+    { title: "Curhat Akademis", image: "/img/sports1.png", description: "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <BookOpen className="w-8 h-8 text-slate-800" /> },
+    { title: "BEM In Action", image: "/img/sports2.png", description: "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <Users className="w-8 h-8 text-slate-800" /> },
+    { title: "Arutala Fest", image: "/img/sports3.png", description: "Mengembangkan solusi kreatif untuk masalah sosial di masyarakat.", icon: <Search className="w-8 h-8 text-slate-800" /> },
 ];
 
 const filosofiLogo = [
@@ -27,10 +27,7 @@ const misiList = [
 
 export default function AboutPage() {
     return (
-        <div
-            className="bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: "url('/img/backgroundbem.png')" }}
-        >
+        <div>
             {/* 1. Hero Section */}
             <section
                 className="relative text-white text-center py-40 px-6"
@@ -95,49 +92,49 @@ export default function AboutPage() {
                 </div>
 
                 <div className="mb-20 md:mb-28">
-  <Card className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20">
-    <div className="p-8 md:p-12">
-      <h2 className="text-4xl font-bold text-slate-800">Program Unggulan</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-12">
-        {prokerUnggulan.map((proker, index) => (
-          <div
-            key={index}
-            className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden group cursor-pointer"
-          >
-            {/* Gambar background dengan efek rotasi saat hover */}
-            <Image
-              src={proker.image}
-              alt={proker.title}
-              layout="fill"
-              objectFit="cover"
-              className="transform transition-transform duration-700 ease-in-out group-hover:rotate-3 group-hover:scale-105 grayscale"
-            />
+                    <Card className="bg-white/90 backdrop-blur-lg rounded-2xl shadow-xl border border-white/20">
+                        <div className="p-8 md:p-12">
+                            <h2 className="text-4xl font-bold text-slate-800">Program Unggulan</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mt-12">
+                                {prokerUnggulan.map((proker, index) => (
+                                    <div
+                                        key={index}
+                                        className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden group cursor-pointer"
+                                    >
+                                        {/* Gambar background dengan efek rotasi saat hover */}
+                                        <Image
+                                            src={proker.image}
+                                            alt={proker.title}
+                                            layout="fill"
+                                            objectFit="cover"
+                                            className="transform transition-transform duration-700 ease-in-out group-hover:rotate-3 group-hover:scale-105 grayscale"
+                                        />
 
-            {/* Overlay gelap saat hover */}
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition-all duration-300 z-10"></div>
+                                        {/* Overlay gelap saat hover */}
+                                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/60 transition-all duration-300 z-10"></div>
 
-            {/* Konten utama (icon + title) */}
-            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-4 transition-opacity duration-300 group-hover:opacity-0">
-              <div className="bg-green-400 p-4 rounded-xl mb-4">
-                {proker.icon}
-              </div>
-              <p className="font-bold text-xl text-center drop-shadow-md">
-                {proker.title}
-              </p>
-            </div>
+                                        {/* Konten utama (icon + title) */}
+                                        <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-white p-4 transition-opacity duration-300 group-hover:opacity-0">
+                                            <div className="bg-green-400 p-4 rounded-xl mb-4">
+                                                {proker.icon}
+                                            </div>
+                                            <p className="font-bold text-xl text-center drop-shadow-md">
+                                                {proker.title}
+                                            </p>
+                                        </div>
 
-            {/* Deskripsi yang muncul saat hover */}
-            <div className="absolute inset-0 z-20 flex items-center justify-center text-center p-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
-              <p className="text-white text-md leading-relaxed drop-shadow-md">
-                {proker.description}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </Card>
-</div>
+                                        {/* Deskripsi yang muncul saat hover */}
+                                        <div className="absolute inset-0 z-20 flex items-center justify-center text-center p-6 opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out">
+                                            <p className="text-white text-md leading-relaxed drop-shadow-md">
+                                                {proker.description}
+                                            </p>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </Card>
+                </div>
 
 
                 {/* 4. Filosofi Logo */}

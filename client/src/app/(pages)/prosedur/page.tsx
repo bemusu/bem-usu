@@ -1,27 +1,23 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
-import { Handshake, Home } from "lucide-react"; 
+import { Handshake, Home } from "lucide-react";
 
 const sopData = [
     {
         title: "Penerimaan Kerja Sama",
         icon: <Handshake className="w-12 h-12 text-green-600" />,
-        link: "/prosedur/kerja-sama" 
+        link: "/prosedur/kerja-sama"
     },
     {
         title: "Asrama Putra/Putri",
         icon: <Home className="w-12 h-12 text-green-600" />,
-        link: "/sop/sop asrama.pdf" 
+        link: "/sop/sop asrama.pdf"
     },
 ];
 
 export default function ProsedurPage() {
     return (
-        <div
-            className="bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: "url('/img/backgroundbem.png')" }}
-        >
+        <div>
             {/* 1. Hero Section */}
             <section
                 className="relative text-white text-center py-40 px-6"
@@ -49,7 +45,7 @@ export default function ProsedurPage() {
                         <h2 className="text-4xl font-bold">Standar Operasional Prosedur</h2>
                     </div>
 
-                    {/* Daftar Kartu Prosedur */}	
+                    {/* Daftar Kartu Prosedur */}
                     <div className="space-y-6">
                         {sopData.map((sop, index) => (
                             <Card key={index} className="bg-white rounded-2xl shadow-lg border border-slate-200/80 hover:shadow-xl transition-shadow duration-300">

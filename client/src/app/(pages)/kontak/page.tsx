@@ -3,40 +3,35 @@ import { Button } from "@/components/ui/button";
 import { Phone, Mail, MapPin, Instagram, Twitter, Youtube } from "lucide-react";
 
 type FormInputProps = {
-  placeholder: string;
-  type?: string;
+    placeholder: string;
+    type?: string;
 };
 
 const FormInput: React.FC<FormInputProps> = ({ placeholder, type = "text" }) => (
-  <input
-    type={type}
-    placeholder={placeholder}
-    className="w-full bg-transparent border-0 border-b-2 border-slate-300 focus:border-green-600 focus:ring-0 transition-colors pb-2"
-  />
+    <input
+        type={type}
+        placeholder={placeholder}
+        className="w-full bg-transparent border-0 border-b-2 border-slate-300 focus:border-green-600 focus:ring-0 transition-colors pb-2"
+    />
 );
 
 type FormTextareaProps = {
-  placeholder: string;
-  rows?: number;
+    placeholder: string;
+    rows?: number;
 };
 
 const FormTextarea: React.FC<FormTextareaProps> = ({ placeholder, rows = 4 }) => (
-  <textarea
-    placeholder={placeholder}
-    rows={rows}
-    className="w-full bg-transparent border-0 border-b-2 border-slate-300 focus:border-green-600 focus:ring-0 transition-colors pb-2"
-  />
+    <textarea
+        placeholder={placeholder}
+        rows={rows}
+        className="w-full bg-transparent border-0 border-b-2 border-slate-300 focus:border-green-600 focus:ring-0 transition-colors pb-2"
+    />
 );
-
-export { FormInput, FormTextarea };
 
 // KOMPONEN HALAMAN UTAMA
 export default function ContactPage() {
     return (
-        <div
-            className="bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: "url('/img/backgroundbem.png')" }}
-        >
+        <div>
             <section
                 className="relative text-white text-center py-40 px-6"
                 style={{
@@ -109,7 +104,7 @@ export default function ContactPage() {
                                 <FormInput placeholder="Kategori Masalah" />
                                 <FormInput placeholder="Tanggal Kejadian" type="date" />
                                 <FormTextarea placeholder="Tulis Pesan..." />
-                                
+
                                 <Button type="submit" className="w-full bg-slate-900 text-white hover:bg-slate-700 transition-colors text-base py-6 rounded-lg">
                                     Kirim Pesan
                                 </Button>

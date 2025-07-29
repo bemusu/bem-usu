@@ -44,8 +44,7 @@ export default function Home() {
             {/* Main Content Container */}
             <div className="container mx-auto p-4 text-gray-900 bg-gray-50">
                 <div
-                    className="px-4 md:px-12 py-24 bg-cover bg-center space-y-16"
-                    style={{ backgroundImage: "url('/img/backgroundbem.png')" }}
+                    className="px-4 md:px-12 py-24 space-y-16"
                 >
                     <section className="py-8 px-4">
                         <div className="bg-white/50 backdrop-blur-md text-gray-800 rounded-2xl shadow-xl p-8 md:p-16 space-y-8 max-w-7xl mx-auto">
