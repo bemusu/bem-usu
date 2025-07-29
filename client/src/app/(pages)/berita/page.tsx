@@ -1,6 +1,6 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
-import { ArrowRight, Calendar } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 const featuredNews = {
     imgURL: '/img/news1.png',
@@ -51,10 +51,7 @@ const otherNews = [
 
 export default function BeritaPage() {
     return (
-        <div
-            className="bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: "url('/img/backgroundbem.png')" }}
-        >
+        <div>
             {/* 1. Hero Section */}
             <section
                 className="relative text-white text-center py-40 px-6"
@@ -83,9 +80,9 @@ export default function BeritaPage() {
                                 <Image
                                     src={featuredNews.imgURL}
                                     alt={featuredNews.title}
-                                    fill
                                     objectFit="cover"
                                     className="transform group-hover:scale-105 transition-transform duration-500"
+                                    layout="fill"
                                 />
                             </div>
                             {/* Detail Berita Utama */}
@@ -126,9 +123,9 @@ export default function BeritaPage() {
                                     <Image
                                         src={news.imgURL}
                                         alt={news.title}
-                                        fill
                                         objectFit="cover"
                                         className="transform group-hover:scale-105 transition-transform duration-500"
+                                        layout="fill"
                                     />
                                 </div>
                                 <div className="mt-4">

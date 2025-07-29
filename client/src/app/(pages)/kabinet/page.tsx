@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
@@ -38,22 +38,22 @@ const cabinetData = [
             { name: "Yoga Pratama", position: "Menteri", image: "/img/members/news1.png" },
             { name: "Citra Kirana", position: "Staff", image: "/img/members/news1.png" },
             { name: "Doni Setiawan", position: "Staff", image: "/img/members/news1.png" },
-		],
-	},
+        ],
+    },
 ];
 
 const MemberCard = ({ name, position, image }: Member) => (
     <div className="text-center group">
         <div className="relative aspect-[4/5] w-full rounded-2xl overflow-hidden shadow-lg transform group-hover:-translate-y-2 transition-transform duration-300">
-            <Image 
-                src={image} 
-                alt={`Foto ${name}`} 
-                layout="fill" 
-                objectFit="cover" 
+            <Image
+                src={image}
+                alt={`Foto ${name}`}
+                layout="fill"
+                objectFit="cover"
                 className="group-hover:scale-105 transition-transform duration-500"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            
+
             {/* PERBAIKAN DI SINI */}
             <div className="absolute bottom-0 left-0 right-0 p-4 text-center text-white">
                 <h3 className="font-bold text-lg leading-tight">{name}</h3>
@@ -71,10 +71,7 @@ export default function CabinetPage() {
     );
 
     return (
-       <div
-            className="bg-cover bg-center bg-fixed"
-            style={{ backgroundImage: "url('/img/backgroundbem.png')" }}
-        >
+        <div>
             <section
                 className="relative text-white text-center py-40 px-6"
                 style={{
@@ -119,7 +116,7 @@ export default function CabinetPage() {
                             </h2>
                             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6 md:gap-8">
                                 {activeDepartmentData?.members.map((member, index) => (
-                                   <MemberCard key={`${activeFilter}-${index}`} {...member} />
+                                    <MemberCard key={`${activeFilter}-${index}`} {...member} />
                                 ))}
                             </div>
                         </section>

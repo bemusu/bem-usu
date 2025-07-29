@@ -1,6 +1,6 @@
 // app/components/Footer.tsx
 
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { FaInstagram, FaTwitter, FaYoutube, FaTiktok, } from 'react-icons/fa';
 import { FiMail, FiMapPin, FiPhone } from 'react-icons/fi';
