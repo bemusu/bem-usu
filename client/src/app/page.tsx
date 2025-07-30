@@ -1,9 +1,9 @@
 import Image from "next/legacy/image";
-import { Calendar, Clock , ArrowRight } from "lucide-react";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
 
 export default function Home() {
     return (
-        <>
+       <>
             <section
                 className="relative text-white text-center py-40 px-6"
                 style={{
@@ -23,8 +23,10 @@ export default function Home() {
                         Selengkapnya
                     </button>
                 </div>
+            </section>
 
-                <div className="absolute left-1/2 transform -translate-x-1/2 -bottom-10 flex flex-wrap justify-center gap-6 w-full px-4 max-w-5xl mx-auto z-20">
+            <section className="relative container mx-auto px-4 z-20">
+                <div className="mt-8 md:-mt-24 flex flex-wrap justify-center gap-6">
                     {[
                         { title: "Kolaborasi", desc: "Kolaborasi Terbaik" },
                         { title: "Reformasi", desc: "Perubahan Terbaik" },
@@ -32,7 +34,7 @@ export default function Home() {
                     ].map((item, i) => (
                         <div
                             key={i}
-                            className="bg-white/50 backdrop-blur-sm border border-white/30 p-6 shadow-lg rounded-lg text-center w-64 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
+                            className="bg-white/50 backdrop-blur-sm border border-white/30 p-6 shadow-lg rounded-lg text-center w-full sm:w-64 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
                         >
                             <div className="text-cyan-800 text-3xl font-extrabold mb-2">{item.title}</div>
                             <p className="text-gray-700 font-medium">{item.desc}</p>
@@ -57,16 +59,21 @@ export default function Home() {
                                         Badan Eksekutif Mahasiswa (BEM) adalah organisasi yang penting di kampus yang berperan sebagai penghubung antara mahasiswa dan pihak universitas.
                                         BEM memberikan wadah bagi mahasiswa untuk aktif dalam berbagai kegiatan kampus, baik akademis maupun non-akademis.
                                     </p>
-                                    <Image src="/img/logo kabinet.png" alt="Logo Kabinet" className="mt-8 mx-auto lg:ml-16" width={280} height={280} />
+                                    <div className="flex justify-center mt-8">
+                                        <Image src="/img/logo kabinet.png" alt="Logo Kabinet" width={280} height={280} />
+                                    </div>
                                 </div>
                                 <div className="max-w-lg text-left">
-                                    <Image src="/img/bem_usu.png" alt="Logo BEM USU" className="mb-8 mx-auto lg:ml-24" width={280} height={280} />
+                                    <div className="flex justify-center mb-8">
+                                        <Image src="/img/bem_usu.png" alt="Logo BEM USU" width={280} height={280} />
+                                    </div>
                                     <p className="text-base md:text-lg leading-relaxed">
                                         Badan Eksekutif Mahasiswa (BEM) adalah organisasi yang penting di kampus karena berperan sebagai penghubung antara mahasiswa dan pihak universitas.
                                         BEM memberikan wadah bagi mahasiswa untuk aktif dalam berbagai kegiatan kampus, baik akademis maupun non-akademis.
                                     </p>
                                 </div>
                             </div>
+
                         </div>
                     </section>
 

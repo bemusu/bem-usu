@@ -80,13 +80,16 @@ export default function CabinetPage() {
                     backgroundPosition: 'center',
                 }}
             >
-                <div className="absolute inset-0 bg-black/60"></div>
+                <div className="absolute inset-0 bg-black opacity-60"></div>
                 <div className="relative z-10 max-w-4xl mx-auto">
                     <h1 className="text-5xl font-extrabold tracking-wide leading-tight">KABINET AKSI BERSAMA</h1>
                     <h2 className="text-4xl font-bold mt-2">BEM USU 2024/2025</h2>
                     <p className="mt-4 text-lg max-w-3xl mx-auto">
                         Kolaborasi Reformasi Untuk Kebermanfaatan Mahasiswa USU serta Masyarakat
                     </p>
+                    <button className="mt-8 px-8 py-3 bg-red-600 hover:bg-red-700 transition-all duration-300 rounded-full text-lg font-medium hover:scale-105 hover:shadow-lg">
+                        Selengkapnya
+                    </button>
                 </div>
             </section>
 
@@ -99,11 +102,12 @@ export default function CabinetPage() {
                                     key={dept.department}
                                     onClick={() => setActiveFilter(dept.department)}
                                     className={cn(
-                                        "px-5 py-2 text-sm md:text-base font-semibold rounded-full transition-colors duration-300",
+                                        "px-5 py-2 text-sm md:text-base font-semibold rounded-full transition-colors duration-300 border",
                                         activeFilter === dept.department
-                                            ? "bg-green-600 text-white shadow-md"
-                                            : "bg-white/50 text-slate-700 hover:bg-white"
+                                            ? "bg-green-600 text-white border-green-600 shadow-md"
+                                            : "bg-white text-slate-700 border-black/30 hover:bg-green-600 hover:text-white hover:border-green-600"
                                     )}
+
                                 >
                                     {dept.department}
                                 </button>
