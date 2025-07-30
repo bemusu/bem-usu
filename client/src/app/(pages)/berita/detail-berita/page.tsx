@@ -26,7 +26,7 @@ const relatedPosts = [
 ];
 
 
-export default function DetailBeritaPage({ params }: { params: { id: string }}) {
+export default function DetailBeritaPage() {
     const post = articleData;
 
     return (
