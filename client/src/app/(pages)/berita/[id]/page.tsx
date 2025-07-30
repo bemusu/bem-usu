@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Home, ChevronRight, Share2, Facebook, Twitter, Instagram } from "lucide-react";
+import { Home, ChevronRight, Facebook, Twitter, Instagram } from "lucide-react";
 
 const articleData = {
     title: "BEM USU Sukses Gelar Webinar Nasional Kewirausahaan Digital",
@@ -26,7 +26,7 @@ const relatedPosts = [
 ];
 
 
-export default function DetailBeritaPage({ params }: { params: { slug: string } }) {
+export default function DetailBeritaPage({ params }: { params: { id: string }}) {
     const post = articleData;
 
     return (
