@@ -1,0 +1,36 @@
+{
+  "collectionName": "components_blocks_about_sections",
+  "info": {
+    "displayName": "About Section"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description_1": {
+      "type": "richtext",
+      "required": true
+    },
+    "logo_image_1": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "description_2": {
+      "type": "richtext"
+    },
+    "logo_image_2": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}
