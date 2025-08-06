@@ -1,5 +1,4 @@
 import { AboutSectionProps } from "@/lib/types"
-import Image from "next/image"
 import StrapiImage from "../StrapiImage"
 
 const AboutSection = ({
@@ -31,11 +30,15 @@ const AboutSection = ({
                     </div>
                     <div className="max-w-lg text-left">
                         <div className="flex justify-center mb-8">
-                            <Image src="/img/bem_usu.png" alt="Logo BEM USU" width={280} height={280} />
+                        <StrapiImage 
+                            src={logo_image_2?.url || "/img/bem_usu.png"} 
+                            alt="Logo BEM USU" 
+                            width={280} 
+                            height={280} 
+                        />
                         </div>
                         <p className="text-base md:text-lg leading-relaxed">
-                            Badan Eksekutif Mahasiswa (BEM) adalah organisasi yang penting di kampus karena berperan sebagai penghubung antara mahasiswa dan pihak universitas.
-                            BEM memberikan wadah bagi mahasiswa untuk aktif dalam berbagai kegiatan kampus, baik akademis maupun non-akademis.
+                            {description_2}
                         </p>
                     </div>
                 </div>
