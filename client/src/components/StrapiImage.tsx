@@ -1,5 +1,4 @@
 import { getStrapiUrl } from "@/lib/utils"
-import { url } from "inspector"
 import Image from "next/image"
 
 
