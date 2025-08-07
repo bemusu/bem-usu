@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import Image from "next/legacy/image";
 import { Card } from "@/components/ui/card";

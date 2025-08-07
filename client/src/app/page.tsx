@@ -22,6 +22,23 @@ export default async function Home() {
     return (
         <>
             <HeroSection {...heroSectionBlock} />
+            <section className="relative container mx-auto px-4 z-20">
+                <div className="mt-8 md:-mt-24 flex flex-wrap justify-center gap-6">
+                    {[
+                        { title: "Kolaborasi", desc: "Kolaborasi Terbaik" },
+                        { title: "Reformasi", desc: "Perubahan Terbaik" },
+                        { title: "Solidaritas", desc: "Solidaritas Terbaik" },
+                    ].map((item, i) => (
+                        <div
+                            key={i}
+                            className="bg-white/50 backdrop-blur-sm border border-white/30 p-6 shadow-lg rounded-lg text-center w-full sm:w-64 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl cursor-pointer"
+                        >
+                            <div className="text-cyan-800 text-3xl font-extrabold mb-2">{item.title}</div>
+                            <p className="text-gray-700 font-medium">{item.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
             {/* Main Content Container */}
             <div className="container mx-auto p-4 text-gray-900 bg-gray-50">
                 <div

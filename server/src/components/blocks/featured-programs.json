@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_featured_programs",
+  "info": {
+    "displayName": "Featured Programs"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Program Unggulan",
+      "required": true
+    },
+    "programs": {
+      "type": "component",
+      "component": "elements.program-card",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}

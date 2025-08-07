@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_elements_mission_items",
+  "info": {
+    "displayName": "Mission Item"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  },
+  "config": {}
+}
