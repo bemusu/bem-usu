@@ -1,0 +1,37 @@
+{
+  "collectionName": "components_blocks_logo_philosophies",
+  "info": {
+    "displayName": "Logo Philosophy"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Filosofi Logo",
+      "required": true
+    },
+    "main_logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logo_name": {
+      "type": "string",
+      "required": true
+    },
+    "logo_description": {
+      "type": "text",
+      "required": true
+    },
+    "philosophy_items": {
+      "type": "component",
+      "component": "elements.philosophy-item",
+      "repeatable": true,
+      "required": true
+    }
+  },
+  "config": {}
+}
