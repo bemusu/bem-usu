@@ -9,7 +9,7 @@ const remotePatterns: RemotePattern[] = [
     protocol: strapiUrl.protocol.replace(':', '') as 'http' | 'https' | undefined,
     hostname: strapiUrl.hostname,
     port: strapiUrl.port,
-    pathname: '/uploads/**'
+    pathname: '/**'
   }
 ]
 

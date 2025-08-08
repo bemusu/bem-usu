@@ -18,7 +18,6 @@ const HeroSection = ({
                 backgroundPosition: 'center',
             }}
         >
-            <p className="text-black text-lg">{getStrapiMedia(image.url)}</p>
             <div className="absolute inset-0 bg-black opacity-60"></div>
             <div className="relative z-10 max-w-4xl mx-auto">
                 <h1 className="text-5xl font-extrabold tracking-wide leading-tight">{heading}</h1>
