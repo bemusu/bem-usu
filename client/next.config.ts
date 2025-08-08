@@ -1,10 +1,10 @@
 import type { NextConfig } from "next";
 import { RemotePattern } from "next/dist/shared/lib/image-config";
 
-const strapiUrlString = process.env.STRAPI_API_URL || 'http://localhost:1337'
+const strapiUrlString = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337'
 const strapiUrl = new URL(strapiUrlString)
 
-const strapiMediaUrlString = process.env.STRAPI_MEDIA_URL || 'http://localhost:1337'
+const strapiMediaUrlString = process.env.NEXT_PUBLIC_STRAPI_MEDIA_URL || 'http://localhost:1337'
 const strapiMediaUrl = new URL(strapiMediaUrlString)
 
 const remotePatterns: RemotePattern[] = [
