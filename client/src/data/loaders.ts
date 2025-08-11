@@ -122,3 +122,64 @@ export const getPageBySlug = async (slug: string) => {
         next: { revalidate: 60 }
     })
 }
+
+
+const globalSettingsQuery = qs.stringify({
+    populate: {
+        header: {
+            populate: {
+                bem_logo: {
+                    populate: {
+                        image: {
+                            fields: ['url', 'alternativeText']
+                        }
+                    }
+                },
+                cabinet_logo: {
+                    populate: {
+                        image: {
+                            fields: ['url', 'alternativeText']
+                        }
+                    }
+                },
+                navigation_links: true,
+                cta: true
+            }
+        },
+        footer: {
+            populate: {
+                navigation_links: true,
+                bem_logo: {
+                    fields: ['url', 'alternativeText']
+                },
+                social_links: {
+                    populate: {
+                        icon: {
+                            fields: ['url', 'alternativeText']
+                        },
+                        social_link: true
+                    }
+                },
+                contact_items: {
+                    populate: {
+                        icon: {
+                            fields: ['url', 'alternativeText']
+                        },
+                        social_link: true
+                    }
+                }
+            }
+        }
+    }
+})
+
+export const getGlobalSettings = async () => {
+    const apiRoute = '/api/global'
+    const url = new URL(apiRoute, BASE_URL)
+    url.search = globalSettingsQuery
+
+    return await fetchAPI(url.href, {
+        method: 'GET',
+        next: { revalidate: 60 }
+    })
+}

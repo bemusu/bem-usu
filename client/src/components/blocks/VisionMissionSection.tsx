@@ -1,16 +1,7 @@
-import Image from "next/image"
 import { Card } from "../ui/card"
 import { ChevronRight } from "lucide-react";
 import { VisionMissionSectionProps } from "@/lib/types";
 import StrapiImage from "../StrapiImage";
-
-const misiList = [
-    "Mewujudkan internal BEM USU yang kuat, sinergis, harmonis, dan berkualitas.",
-    "Meningkatkan kolaborasi dan solidaritas antar ORMAWA.",
-    "Melaksanakan tugas pengelolaan BEM USU yang transparan dan akuntabel.",
-    "Memfasilitasi pengembangan akademik, minat, dan bakat mahasiswa.",
-    "Memperjuangkan hak mahasiswa dan aktif merespon isu-isu strategis."
-];
 
 const VisionMissionSection = ({
     eyebrow_title,
