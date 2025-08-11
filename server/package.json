@@ -37,10 +37,5 @@
   "strapi": {
     "uuid": "478a49b5-9e54-4bfd-848d-8410a3e7d864",
     "installId": "5cc4c76509fde7866df21f26bb5c7f1e668fdb43653587b3bdf09b796b263744"
-  },
-  "pnpm": {
-    "overrides": {
-      "node-schedule": "2.1.0"
-    }
   }
 }
