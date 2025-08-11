@@ -137,6 +137,91 @@ export interface ElementsProgramCard extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsSocialLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_social_links';
+  info: {
+    displayName: 'Social Link';
+  };
+  attributes: {
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    social_link: Schema.Attribute.Component<'elements.link', false> &
+      Schema.Attribute.Required;
+  };
+}
+
+export interface LayoutFooter extends Struct.ComponentSchema {
+  collectionName: 'components_layout_footers';
+  info: {
+    displayName: 'Footer';
+  };
+  attributes: {
+    bem_logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    brand_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Pemerintahan Mahasiswa'>;
+    cabinet_logo: Schema.Attribute.Media<'images'>;
+    contact_info_title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Info Kontak'>;
+    contact_items: Schema.Attribute.Component<'elements.social-link', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    copyright: Schema.Attribute.Text &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Copyright \u00A9 2025 BEM Universitas Sumatera Utara - All rights reserved.'>;
+    navigation_links: Schema.Attribute.Component<'elements.link', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    quick_link_title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Tautan Cepat'>;
+    social_links: Schema.Attribute.Component<'elements.social-link', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    university_name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Universitas Sumatera Utara'>;
+  };
+}
+
+export interface LayoutHeader extends Struct.ComponentSchema {
+  collectionName: 'components_layout_headers';
+  info: {
+    displayName: 'Header';
+  };
+  attributes: {
+    bem_logo: Schema.Attribute.Component<'elements.logo', false> &
+      Schema.Attribute.Required;
+    cabinet_logo: Schema.Attribute.Component<'elements.logo', false>;
+    cta: Schema.Attribute.Component<'elements.link', false> &
+      Schema.Attribute.Required;
+    navigation_links: Schema.Attribute.Component<'elements.link', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -150,6 +235,9 @@ declare module '@strapi/strapi' {
       'elements.mission-item': ElementsMissionItem;
       'elements.philosophy-item': ElementsPhilosophyItem;
       'elements.program-card': ElementsProgramCard;
+      'elements.social-link': ElementsSocialLink;
+      'layout.footer': LayoutFooter;
+      'layout.header': LayoutHeader;
     }
   }
 }

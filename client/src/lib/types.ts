@@ -38,6 +38,35 @@ export interface PhilosophyItemProps {
     description: string
 }
 
+export interface SocialLink {
+    id: number
+    icon: ImageProps
+    social_link: LinkProps
+}
+
+export interface HeaderProps {
+    id: number
+    bem_logo: LogoProps
+    cabinet_logo?: LogoProps
+    title: string
+    navigation_links: LinkProps[]
+    cta: LinkProps
+}
+
+export interface FooterProps {
+    id: number
+    quick_link_title: string
+    navigation_links: LinkProps[]
+    bem_logo: ImageProps
+    cabinet_logo?: ImageProps
+    brand_name: string
+    university_name: string
+    social_links: SocialLink[]
+    contact_info_title: string
+    contact_items: SocialLink[]
+    copyright: string
+}
+
 type ComponentType = 
     "blocks.hero-section" 
     | "blocks.about-section"
