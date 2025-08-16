@@ -4,6 +4,7 @@ import qs from "qs"
 
 
 const BASE_URL = getStrapiUrl()
+const ARTICLE_PAGE_SIZE = 6
 
 const homePageQuery = qs.stringify({
     populate: {
@@ -179,6 +180,115 @@ export const getGlobalSettings = async () => {
     url.search = globalSettingsQuery
 
     return await fetchAPI(url.href, {
+        method: 'GET',
+        next: { revalidate: 60 }
+    })
+}
+
+
+const getArticlesQuery = (
+    featured?: boolean,
+    query?: string,
+    page?: number,
+    category?: string,
+    excludeSlug?: string
+) => qs.stringify({
+    sort: ["createdAt:desc"],
+    filters: {
+        $and: [
+            {
+                slug: {
+                    $ne: excludeSlug
+                }
+            },
+            {
+                $or: [
+                    { title: { $containsi: query } },
+                    { description: { $containsi: query } }
+                ]
+            },
+            {
+                ...(category && {
+                    categories: {
+                        slug: {
+                            $eq: category
+                        }
+                    }
+                })
+            }
+        ],
+        ...(featured && { featured: { $eq: featured } })
+    },
+    pagination: {
+        pageSize: ARTICLE_PAGE_SIZE,
+        page: page || 1
+    },
+    populate: {
+        image: {
+            fields: ['url', 'alternativeText']
+        },
+        categories: true
+    }
+})
+
+export const getCategories = async () => {
+    const apiRoute = '/api/categories'
+    const url = new URL(apiRoute, BASE_URL)
+
+    return fetchAPI(url.href, {
+        method: 'GET',
+        next: { revalidate: 60 }
+    })
+}
+
+export const getArticles = async (
+    path: string,
+    featured?: boolean,
+    query?: string,
+    page?: number,
+    category?: string,
+    excludeSlug?: string
+) => {
+    const url = new URL(path, BASE_URL)
+    url.search = getArticlesQuery(featured, query, page, category, excludeSlug)
+
+    return fetchAPI(url.href, {
+        method: 'GET',
+        next: { revalidate: 60 }
+    })
+}
+
+
+const getArticleBySlugQuery = (slug: string) => qs.stringify({
+    filters: {
+        slug: {
+            $eq: slug
+        }
+    },
+    populate: {
+        image: {
+            fields: ['url', 'alternativeText']
+        },
+        categories: true,
+        blocks: {
+            on: {
+                "blocks.quote-block": {
+                    populate: true
+                },
+                "blocks.content": {
+                    populate: true
+                }
+            }
+        }
+    }
+})
+
+export const getArticleBySlug = async (slug: string) => {
+    const apiRoute = '/api/articles'
+    const url = new URL(apiRoute, BASE_URL)
+    url.search = getArticleBySlugQuery(slug)
+
+    return fetchAPI(url.href, {
         method: 'GET',
         next: { revalidate: 60 }
     })

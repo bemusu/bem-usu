@@ -75,7 +75,7 @@ export function Footer({
                     </div>
 
                     <div className="md:text-left">
-                        <h3 className="font-bold text-lg mb-4">Inf{contact_info_title}</h3>
+                        <h3 className="font-bold text-lg mb-4">{contact_info_title}</h3>
                         <address className="not-italic space-y-4 text-slate-600">
                             {contact_items.map(item => (
                                 <div

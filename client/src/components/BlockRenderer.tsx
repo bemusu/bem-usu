@@ -4,9 +4,11 @@ import FeaturedPrograms from "./blocks/FeaturedPrograms"
 import LogoPhilosophy from "./blocks/LogoPhilosophy"
 import VisionMissionSection from "./blocks/VisionMissionSection"
 import HeroSection from "./blocks/HeroSection"
+import QuoteBlock from "./blocks/QuoteBlock"
+import ContentBlock from "./blocks/ContentBlock"
 
 
-const blockRenderer = (block: Block) => {
+export const blockRenderer = (block: Block) => {
     switch (block.__component) {
         case "blocks.hero-section":
             return <HeroSection key={`${block.__component}-${block.id}`} {...block} />
@@ -18,6 +20,10 @@ const blockRenderer = (block: Block) => {
             return <FeaturedPrograms key={`${block.__component}-${block.id}`} {...block} />
         case "blocks.logo-philosophy":
             return <LogoPhilosophy key={`${block.__component}-${block.id}`} {...block} />
+        case "blocks.quote-block":
+            return <QuoteBlock key={`${block.__component}-${block.id}`} {...block} />
+        case "blocks.content":
+            return <ContentBlock key={`${block.__component}-${block.id}`} {...block} />
         default:
             return null
     }
