@@ -78,18 +78,23 @@ export function Footer({
                         <h3 className="font-bold text-lg mb-4">{contact_info_title}</h3>
                         <address className="not-italic space-y-4 text-slate-600">
                             {contact_items.map(item => (
-                                <div
+                                <Link
                                     key={`${item.social_link.text}-${item.social_link.id}`}
-                                    className="flex items-center justify-center md:justify-start gap-3"
+                                    href={item.social_link.href}
+                                    target="_blank"
                                 >
-                                    <StrapiImage
-                                        src={item.icon.url}
-                                        alt={item.icon.alternativeText || 'sosmed-icon'}
-                                        width={20}
-                                        height={20}
-                                    />
-                                    <span>{item.social_link.text}</span>
-                                </div>
+                                    <div
+                                        className="flex items-center justify-center md:justify-start gap-3"
+                                    >
+                                        <StrapiImage
+                                            src={item.icon.url}
+                                            alt={item.icon.alternativeText || 'sosmed-icon'}
+                                            width={20}
+                                            height={20}
+                                        />
+                                        <span>{item.social_link.text}</span>
+                                    </div>
+                                </Link>
                             ))}
                         </address>
                     </div>

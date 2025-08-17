@@ -191,7 +191,8 @@ const getArticlesQuery = (
     query?: string,
     page?: number,
     category?: string,
-    excludeSlug?: string
+    excludeSlug?: string,
+    pageSize?: number
 ) => qs.stringify({
     sort: ["createdAt:desc"],
     filters: {
@@ -220,7 +221,7 @@ const getArticlesQuery = (
         ...(featured && { featured: { $eq: featured } })
     },
     pagination: {
-        pageSize: ARTICLE_PAGE_SIZE,
+        pageSize: pageSize || ARTICLE_PAGE_SIZE,
         page: page || 1
     },
     populate: {
@@ -247,10 +248,11 @@ export const getArticles = async (
     query?: string,
     page?: number,
     category?: string,
-    excludeSlug?: string
+    excludeSlug?: string,
+    pageSize?: number
 ) => {
     const url = new URL(path, BASE_URL)
-    url.search = getArticlesQuery(featured, query, page, category, excludeSlug)
+    url.search = getArticlesQuery(featured, query, page, category, excludeSlug, pageSize)
 
     return fetchAPI(url.href, {
         method: 'GET',
@@ -288,6 +290,37 @@ export const getArticleBySlug = async (slug: string) => {
     const url = new URL(apiRoute, BASE_URL)
     url.search = getArticleBySlugQuery(slug)
 
+    return fetchAPI(url.href, {
+        method: 'GET',
+        next: { revalidate: 60 }
+    })
+}
+
+
+const getDepartmentMemberQuery = qs.stringify({
+    populate: {
+        photo: {
+            fields: ['url', 'alternativeText']
+        },
+        department: true
+    }
+})
+
+export const getDepartments = async () => {
+    const apiRoute = '/api/departments'
+    const url = new URL(apiRoute, BASE_URL)
+    
+    return fetchAPI(url.href, {
+        method: 'GET',
+        next: { revalidate: 60 }
+    })
+}
+
+export const getDepartmentMembers = async () => {
+    const apiRoute = '/api/members'
+    const url = new URL(apiRoute, BASE_URL)
+    url.search = getDepartmentMemberQuery
+    
     return fetchAPI(url.href, {
         method: 'GET',
         next: { revalidate: 60 }

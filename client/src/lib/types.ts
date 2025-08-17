@@ -68,11 +68,11 @@ export interface FooterProps {
 }
 
 export interface CategoryProps {
-  id: number
-  documentId: string
-  category_name: string
-  slug: string
-  description: string
+    id: number
+    documentId: string
+    category_name: string
+    slug: string
+    description: string
 }
 
 export interface ArticleProps {
@@ -90,8 +90,24 @@ export interface ArticleProps {
     publishedAt: string
 }
 
-type ComponentType = 
-    "blocks.hero-section" 
+export interface DepartmentProps {
+    id: number
+    documentId: string
+    department_name: string
+    slug: string
+}
+
+export interface MemberProps {
+    id: number
+    documentId: string
+    name: string
+    position: string
+    photo: ImageProps
+    department: DepartmentProps
+}
+
+type ComponentType =
+    "blocks.hero-section"
     | "blocks.about-section"
     | "blocks.vision-and-mission-section"
     | "blocks.featured-programs"
@@ -155,8 +171,8 @@ export interface ContentProps extends Base<"blocks.content"> {
     content: string
 }
 
-export type Block = 
-    HeroSectionProps 
+export type Block =
+    HeroSectionProps
     | AboutSectionProps
     | VisionMissionSectionProps
     | FeaturedProgramsProps
