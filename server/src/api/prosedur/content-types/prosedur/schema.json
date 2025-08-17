@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "prosedurs",
+  "info": {
+    "singularName": "prosedur",
+    "pluralName": "prosedurs",
+    "displayName": "Prosedur"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "icon": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "prosedur_name": {
+      "type": "string",
+      "required": true
+    },
+    "berkas": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "files"
+      ]
+    }
+  }
+}

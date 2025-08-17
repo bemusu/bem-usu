@@ -624,6 +624,36 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiProsedurProsedur extends Struct.CollectionTypeSchema {
+  collectionName: 'prosedurs';
+  info: {
+    displayName: 'Prosedur';
+    pluralName: 'prosedurs';
+    singularName: 'prosedur';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    berkas: Schema.Attribute.Media<'files'> & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icon: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::prosedur.prosedur'
+    > &
+      Schema.Attribute.Private;
+    prosedur_name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface PluginContentReleasesRelease
   extends Struct.CollectionTypeSchema {
   collectionName: 'strapi_releases';
@@ -1140,6 +1170,7 @@ declare module '@strapi/strapi' {
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::member.member': ApiMemberMember;
       'api::page.page': ApiPagePage;
+      'api::prosedur.prosedur': ApiProsedurProsedur;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
