@@ -4,20 +4,44 @@ import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { Card } from "@/components/ui/card"
 import { Search, AlertTriangle, RefreshCw } from "lucide-react"
-import { ProsedurProps } from "@/lib/types"
-import { getProsedurs } from "@/data/loaders"
+import { Block, ProsedurProps } from "@/lib/types"
+import { getPageBySlug, getProsedurs } from "@/data/loaders"
 import StrapiImage from "@/components/StrapiImage"
 import { getStrapiMedia } from "@/components/StrapiImage"
 import { ProsedurCardSkeleton } from "@/components/skeletons/ProsedurCardSkeleton"
+import { blockRenderer } from "@/components/BlockRenderer"
 
 
 export default function ProsedurPage() {
+    const [blocks, setBlocks] = useState<Block[]>([])
+    const [isBlocksLoading, setIsBlocksLoading] = useState(true)
+
     const [prosedurs, setProsedurs] = useState<ProsedurProps[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [searchTerm, setSearchTerm] = useState("")
 
     const handleRefresh = () => window.location.reload()
+
+    useEffect(() => {
+        const fetchPageData = async () => {
+            setIsBlocksLoading(true);
+            try {
+                const { data } = await getPageBySlug('prosedur');
+                if (data && data.length > 0) {
+                    setBlocks(data[0].blocks);
+                } else {
+                    console.error("[ProsedurPage] Error: Halaman 'prosedur' tidak ditemukan atau tidak memiliki blok.");
+                }
+            } catch (error) {
+                console.error(`[ProsedurPage] Gagal mengambil data halaman: ${error}`);
+            } finally {
+                setIsBlocksLoading(false);
+            }
+        };
+
+        fetchPageData();
+    }, []);
 
     const fetchProsedurs = useCallback(async (query: string) => {
         setIsLoading(true)
@@ -45,29 +69,16 @@ export default function ProsedurPage() {
         return () => clearTimeout(debounceTimer)
     }, [searchTerm, fetchProsedurs])
 
+    const heroBlock = blocks.find(block => block.__component === 'blocks.hero-section')
+
     return (
         <div className="bg-slate-50">
             {/* Hero Section */}
-            <section
-                className="relative text-white text-center py-40 px-6"
-                style={{
-                    backgroundImage: "url('/img/gambar kabinet.png')",
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                }}
-            >
-                <div className="absolute inset-0 bg-black opacity-60"></div>
-                <div className="relative z-10 max-w-4xl mx-auto">
-                    <h1 className="text-5xl font-extrabold tracking-wide leading-tight">KABINET AKSI BERSAMA</h1>
-                    <h2 className="text-4xl font-bold mt-2">BEM USU 2024/2025</h2>
-                    <p className="mt-4 text-lg max-w-3xl mx-auto">
-                        Kolaborasi Reformasi Untuk Kebermanfaatan Mahasiswa USU serta Masyarakat
-                    </p>
-                    <button className="mt-8 px-8 py-3 bg-red-600 hover:bg-red-700 transition-all duration-300 rounded-full text-lg font-medium hover:scale-105 hover:shadow-lg">
-                        Selengkapnya
-                    </button>
-                </div>
-            </section>
+            {isBlocksLoading ? (
+                <div className="relative text-white text-center py-60 px-6 bg-gray-200 animate-pulse"></div>
+            ) : (
+                heroBlock && blockRenderer(heroBlock)
+            )}
 
             {/* Konten Utama */}
             <div className="container mx-auto px-6 py-20 md:py-28">
