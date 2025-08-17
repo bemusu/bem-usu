@@ -384,14 +384,22 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
+    author: Schema.Attribute.String;
+    blocks: Schema.Attribute.DynamicZone<
+      ['blocks.quote-block', 'blocks.content']
+    > &
+      Schema.Attribute.Required;
     categories: Schema.Attribute.Relation<
       'manyToMany',
       'api::category.category'
     >;
-    content: Schema.Attribute.RichText & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    featured: Schema.Attribute.Boolean &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<false>;
     image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
@@ -399,11 +407,9 @@ export interface ApiArticleArticle extends Struct.CollectionTypeSchema {
       'api::article.article'
     > &
       Schema.Attribute.Private;
-    publish_date: Schema.Attribute.Date;
     publishedAt: Schema.Attribute.DateTime;
-    short_description: Schema.Attribute.Text & Schema.Attribute.Required;
-    slug: Schema.Attribute.UID<'Title'> & Schema.Attribute.Required;
-    Title: Schema.Attribute.String & Schema.Attribute.Required;
+    slug: Schema.Attribute.UID<'title'> & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -524,6 +530,7 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'blocks.about-section',
         'blocks.featured-programs',
         'blocks.logo-philosophy',
+        'blocks.quote-block',
       ]
     > &
       Schema.Attribute.Required;

@@ -25,7 +25,8 @@
         "blocks.vision-and-mission-section",
         "blocks.about-section",
         "blocks.featured-programs",
-        "blocks.logo-philosophy"
+        "blocks.logo-philosophy",
+        "blocks.quote-block"
       ],
       "required": true
     },

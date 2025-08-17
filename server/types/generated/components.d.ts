@@ -14,6 +14,16 @@ export interface BlocksAboutSection extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksContent extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_contents';
+  info: {
+    displayName: 'Content';
+  };
+  attributes: {
+    content: Schema.Attribute.RichText & Schema.Attribute.Required;
+  };
+}
+
 export interface BlocksFeaturedPrograms extends Struct.ComponentSchema {
   collectionName: 'components_blocks_featured_programs';
   info: {
@@ -59,6 +69,16 @@ export interface BlocksLogoPhilosophy extends Struct.ComponentSchema {
     title: Schema.Attribute.String &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Filosofi Logo'>;
+  };
+}
+
+export interface BlocksQuoteBlock extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_quote_blocks';
+  info: {
+    displayName: 'Quote Block';
+  };
+  attributes: {
+    quote: Schema.Attribute.Text;
   };
 }
 
@@ -226,9 +246,11 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.about-section': BlocksAboutSection;
+      'blocks.content': BlocksContent;
       'blocks.featured-programs': BlocksFeaturedPrograms;
       'blocks.hero-section': BlocksHeroSection;
       'blocks.logo-philosophy': BlocksLogoPhilosophy;
+      'blocks.quote-block': BlocksQuoteBlock;
       'blocks.vision-and-mission-section': BlocksVisionAndMissionSection;
       'elements.link': ElementsLink;
       'elements.logo': ElementsLogo;

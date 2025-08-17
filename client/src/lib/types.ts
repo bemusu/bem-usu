@@ -67,12 +67,37 @@ export interface FooterProps {
     copyright: string
 }
 
+export interface CategoryProps {
+  id: number
+  documentId: string
+  category_name: string
+  slug: string
+  description: string
+}
+
+export interface ArticleProps {
+    id: number
+    documentId: string
+    title: string
+    slug: string
+    image: ImageProps
+    author: string
+    description: string
+    categories: CategoryProps[]
+    featured: boolean
+    createdAt: string
+    updatedAt: string
+    publishedAt: string
+}
+
 type ComponentType = 
     "blocks.hero-section" 
     | "blocks.about-section"
     | "blocks.vision-and-mission-section"
     | "blocks.featured-programs"
     | "blocks.logo-philosophy"
+    | "blocks.quote-block"
+    | "blocks.content"
 
 interface Base<T extends ComponentType, D extends object = Record<string, unknown>> {
     id: number
@@ -122,9 +147,19 @@ export interface LogoPhilosophyProps extends Base<"blocks.logo-philosophy"> {
     philosophy_items: PhilosophyItemProps[]
 }
 
+export interface QuoteBlockProps extends Base<"blocks.quote-block"> {
+    quote: string
+}
+
+export interface ContentProps extends Base<"blocks.content"> {
+    content: string
+}
+
 export type Block = 
     HeroSectionProps 
     | AboutSectionProps
     | VisionMissionSectionProps
     | FeaturedProgramsProps
     | LogoPhilosophyProps
+    | QuoteBlockProps
+    | ContentProps
