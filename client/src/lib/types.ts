@@ -106,6 +106,21 @@ export interface MemberProps {
     department: DepartmentProps
 }
 
+export interface BerkasProps {
+    id: number
+    documentId: string
+    url: string
+    alternativeText: string
+}
+
+export interface ProsedurProps {
+    id: number
+    documentId: string
+    icon: ImageProps
+    prosedur_name: string
+    berkas: BerkasProps
+}
+
 type ComponentType =
     "blocks.hero-section"
     | "blocks.about-section"

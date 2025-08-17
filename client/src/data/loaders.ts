@@ -326,3 +326,29 @@ export const getDepartmentMembers = async () => {
         next: { revalidate: 60 }
     })
 }
+
+
+const getProsedursQuery = (query?: string) => qs.stringify({
+    filters: {
+        prosedur_name: { $containsi: query }
+    },
+    populate: {
+        icon: {
+            fields: ['url', 'alternativeText']
+        },
+        berkas: {
+            fields: ['url', 'alternativeText']
+        }
+    }
+})
+
+export const getProsedurs = async (query?: string) => {
+    const apiRoute = '/api/prosedurs'
+    const url = new URL(apiRoute, BASE_URL)
+    url.search = getProsedursQuery(query)
+
+    return fetchAPI(url.href, {
+        method: 'GET',
+        next: { revalidate: 60 }
+    })
+}

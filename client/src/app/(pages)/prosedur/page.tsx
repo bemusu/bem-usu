@@ -1,38 +1,53 @@
 'use client'
 
-import { useState } from "react";
-import Link from "next/link";
-import { Card } from "@/components/ui/card";
-import { Handshake, Home, FileText, Search } from "lucide-react";
+import { useCallback, useEffect, useState } from "react"
+import Link from "next/link"
+import { Card } from "@/components/ui/card"
+import { Search, AlertTriangle, RefreshCw } from "lucide-react"
+import { ProsedurProps } from "@/lib/types"
+import { getProsedurs } from "@/data/loaders"
+import StrapiImage from "@/components/StrapiImage"
+import { getStrapiMedia } from "@/components/StrapiImage"
+import { ProsedurCardSkeleton } from "@/components/skeletons/ProsedurCardSkeleton"
 
-const sopData = [
-    {
-        title: "Penerimaan Kerja Sama",
-        icon: <Handshake className="w-12 h-12 text-green-600" />,
-        link: "/sop/sop asmara.pdf"
-    },
-    {
-        title: "Asrama Putra/Putri",
-        icon: <Home className="w-12 h-12 text-green-600" />,
-        link: "/sop/sop asmara.pdf"
-    },
-    {
-        title: "Pengajuan Proposal",
-        icon: <FileText className="w-12 h-12 text-green-600" />,
-        link: "/sop/sop asmara.pdf"
-    },
-    
-];
 
 export default function ProsedurPage() {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [prosedurs, setProsedurs] = useState<ProsedurProps[]>([])
+    const [isLoading, setIsLoading] = useState(true)
+    const [error, setError] = useState<string | null>(null)
+    const [searchTerm, setSearchTerm] = useState("")
 
-    const filteredSop = sopData.filter(sop =>
-        sop.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const handleRefresh = () => window.location.reload()
+
+    const fetchProsedurs = useCallback(async (query: string) => {
+        setIsLoading(true)
+        setError(null)
+        try {
+            const { data } = await getProsedurs(query)
+            if (data) {
+                setProsedurs(data)
+            } else {
+                throw new Error("Gagal mengambil data prosedur.")
+            }
+        } catch (err) {
+            setError("Terjadi kesalahan saat memuat data. Silakan coba lagi nanti.")
+            console.error(err)
+        } finally {
+            setIsLoading(false)
+        }
+    }, [])
+
+    useEffect(() => {
+        const debounceTimer = setTimeout(() => {
+            fetchProsedurs(searchTerm)
+        }, 500)
+
+        return () => clearTimeout(debounceTimer)
+    }, [searchTerm, fetchProsedurs])
 
     return (
         <div className="bg-slate-50">
+            {/* Hero Section */}
             <section
                 className="relative text-white text-center py-40 px-6"
                 style={{
@@ -54,7 +69,7 @@ export default function ProsedurPage() {
                 </div>
             </section>
 
-            {/* 2. KONTEN UTAMA */}
+            {/* Konten Utama */}
             <div className="container mx-auto px-6 py-20 md:py-28">
                 <div className="max-w-7xl mx-auto">
                     <div className="text-center mb-8">
@@ -74,23 +89,49 @@ export default function ProsedurPage() {
 
                     {/* Daftar Kartu Prosedur */}
                     <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-6">
-                        {filteredSop.length > 0 ? (
-                            filteredSop.map((sop, index) => (
-                                <Card key={index} className="bg-white rounded-2xl shadow-lg border border-slate-200/80 hover:shadow-xl transition-shadow duration-300">
+                        {isLoading ? (
+                            Array.from({ length: 3 }).map((_, index) => <ProsedurCardSkeleton key={index} />)
+                        ) : error ? (
+                            <div className="text-center p-8 bg-red-50 text-red-700 rounded-lg flex flex-col items-center gap-4">
+                                <AlertTriangle className="w-12 h-12" />
+                                <h2 className="text-2xl font-bold">Terjadi Kesalahan</h2>
+                                <p>{error}</p>
+                                <button
+                                    onClick={handleRefresh}
+                                    className="mt-4 flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700 transition-colors"
+                                >
+                                    <RefreshCw size={18} />
+                                    <span>Coba Lagi</span>
+                                </button>
+                            </div>
+                        ) : prosedurs.length > 0 ? (
+                            prosedurs.map((prosedur) => (
+                                <Card key={prosedur.documentId} className="bg-white rounded-2xl shadow-lg border border-slate-200/80 hover:shadow-xl transition-shadow duration-300">
                                     <div className="p-6 flex flex-col md:flex-row items-center justify-between gap-6">
                                         <div className="flex items-center gap-6">
                                             <div className="flex-shrink-0 w-24 h-24 bg-green-50 rounded-full flex items-center justify-center">
-                                                {sop.icon}
+                                                <StrapiImage
+                                                    src={prosedur.icon.url}
+                                                    alt={prosedur.icon.alternativeText || "icon"}
+                                                    className="w-12 h-12 text-green-600"
+                                                    width={48}
+                                                    height={48}
+                                                />
                                             </div>
                                             <div>
-                                                <h3 className="text-xl font-bold text-slate-800">{sop.title}</h3>
+                                                <h3 className="text-xl font-bold text-slate-800">{prosedur.prosedur_name}</h3>
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-3 shrink-0">
-                                            <Link href={sop.link} className="px-5 py-3 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors text-sm">
+                                            <Link
+                                                href={getStrapiMedia(prosedur.berkas.url) || '#'}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="px-5 py-3 bg-slate-800 text-white font-semibold rounded-lg hover:bg-slate-700 transition-colors text-sm"
+                                            >
                                                 Baca SOP
                                             </Link>
-                                            <Link href="/lapor" className="px-5 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors text-sm">
+                                            <Link href="/kontak" className="px-5 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition-colors text-sm">
                                                 Lapor
                                             </Link>
                                         </div>
@@ -104,5 +145,5 @@ export default function ProsedurPage() {
                 </div>
             </div>
         </div>
-    );
+    )
 }
