@@ -468,6 +468,7 @@ export interface ApiDepartmentDepartment extends Struct.CollectionTypeSchema {
       'api::department.department'
     > &
       Schema.Attribute.Private;
+    ministry: Schema.Attribute.Relation<'manyToOne', 'api::ministry.ministry'>;
     publishedAt: Schema.Attribute.DateTime;
     slug: Schema.Attribute.UID<'department_name'> & Schema.Attribute.Required;
     updatedAt: Schema.Attribute.DateTime;
@@ -586,6 +587,39 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<'Staff'>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMinistryMinistry extends Struct.CollectionTypeSchema {
+  collectionName: 'ministries';
+  info: {
+    displayName: 'Ministry';
+    pluralName: 'ministries';
+    singularName: 'ministry';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    departments: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::department.department'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::ministry.ministry'
+    > &
+      Schema.Attribute.Private;
+    ministry_name: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    slug: Schema.Attribute.UID<'ministry_name'>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1212,6 +1246,7 @@ declare module '@strapi/strapi' {
       'api::global.global': ApiGlobalGlobal;
       'api::home-page.home-page': ApiHomePageHomePage;
       'api::member.member': ApiMemberMember;
+      'api::ministry.ministry': ApiMinistryMinistry;
       'api::page.page': ApiPagePage;
       'api::prosedur.prosedur': ApiProsedurProsedur;
       'api::report.report': ApiReportReport;

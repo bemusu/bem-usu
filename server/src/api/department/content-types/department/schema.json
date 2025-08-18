@@ -19,6 +19,12 @@
       "type": "uid",
       "targetField": "department_name",
       "required": true
+    },
+    "ministry": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ministry.ministry",
+      "inversedBy": "departments"
     }
   }
 }
