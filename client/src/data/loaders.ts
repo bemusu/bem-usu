@@ -107,6 +107,26 @@ const pageBySlugQuery = (slug: string) => qs.stringify({
                             }
                         }
                     }
+                },
+                "blocks.contact-information": {
+                    populate: {
+                        contact_items: {
+                            populate: {
+                                icon: {
+                                    fields: ['url', 'alternativeText']
+                                },
+                                social_link: true
+                            }
+                        },
+                        social_media: {
+                            populate: {
+                                icon: {
+                                    fields: ['url', 'alternativeText']
+                                },
+                                social_link: true
+                            }
+                        }
+                    }
                 }
             }
         }

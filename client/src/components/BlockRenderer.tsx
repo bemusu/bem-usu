@@ -6,6 +6,7 @@ import VisionMissionSection from "./blocks/VisionMissionSection"
 import HeroSection from "./blocks/HeroSection"
 import QuoteBlock from "./blocks/QuoteBlock"
 import ContentBlock from "./blocks/ContentBlock"
+import ContactInformation from "./blocks/ContactInformation"
 
 
 export const blockRenderer = (block: Block) => {
@@ -24,6 +25,8 @@ export const blockRenderer = (block: Block) => {
             return <QuoteBlock key={`${block.__component}-${block.id}`} {...block} />
         case "blocks.content":
             return <ContentBlock key={`${block.__component}-${block.id}`} {...block} />
+        case "blocks.contact-information":
+            return <ContactInformation key={`${block.__component}-${block.id}`} {...block} />
         default:
             return null
     }

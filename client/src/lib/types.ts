@@ -121,6 +121,17 @@ export interface ProsedurProps {
     berkas: BerkasProps
 }
 
+export interface ReportProps {
+    name: string
+    nim: string
+    faculty: string
+    program_study: string
+    whatsapp_number: string
+    problem_category: string
+    date: string
+    message: string
+}
+
 type ComponentType =
     "blocks.hero-section"
     | "blocks.about-section"
@@ -129,6 +140,7 @@ type ComponentType =
     | "blocks.logo-philosophy"
     | "blocks.quote-block"
     | "blocks.content"
+    | "blocks.contact-information"
 
 interface Base<T extends ComponentType, D extends object = Record<string, unknown>> {
     id: number
@@ -186,6 +198,13 @@ export interface ContentProps extends Base<"blocks.content"> {
     content: string
 }
 
+export interface ContactInformationProps extends Base<"blocks.contact-information"> {
+    title: string
+    subtitle: string
+    contact_items: SocialLink[]
+    social_media: SocialLink[]
+}
+
 export type Block =
     HeroSectionProps
     | AboutSectionProps
@@ -194,3 +213,4 @@ export type Block =
     | LogoPhilosophyProps
     | QuoteBlockProps
     | ContentProps
+    | ContactInformationProps

@@ -61,7 +61,7 @@ export function Footer({
                                     target={link.social_link.isExternal ? "_blank" : undefined}
                                     rel="noopener noreferrer"
                                     aria-label={link.social_link.text}
-                                    className="bg-slate-800 text-white p-2 rounded-md hover:bg-green-600 transition-colors"
+                                    className="bg-slate-800 text-white p-2 rounded-md hover:bg-green-600 transition-colors flex items-center"
                                 >
                                     <StrapiImage
                                         src={link.icon.url}
@@ -82,18 +82,15 @@ export function Footer({
                                     key={`${item.social_link.text}-${item.social_link.id}`}
                                     href={item.social_link.href}
                                     target="_blank"
+                                    className="flex items-center justify-center md:justify-start gap-3"
                                 >
-                                    <div
-                                        className="flex items-center justify-center md:justify-start gap-3"
-                                    >
-                                        <StrapiImage
-                                            src={item.icon.url}
-                                            alt={item.icon.alternativeText || 'sosmed-icon'}
-                                            width={20}
-                                            height={20}
-                                        />
-                                        <span>{item.social_link.text}</span>
-                                    </div>
+                                    <StrapiImage
+                                        src={item.icon.url}
+                                        alt={item.icon.alternativeText || 'sosmed-icon'}
+                                        width={20}
+                                        height={20}
+                                    />
+                                    <span>{item.social_link.text}</span>
                                 </Link>
                             ))}
                         </address>

@@ -17,12 +17,16 @@ const getPositionOrder = (position: string) => {
     const order: { [key: string]: number } = {
         "Ketua BEM": 1,
         "Wakil Ketua BEM": 2,
-        "Sekretaris Umum": 3,
-        "Bendahara Umum": 4,
-        "Menteri": 5,
-        "Wakil Menteri": 6,
-        "Staff Ahli": 7,
-        "Staff": 8
+        "Kepala Staff BEM": 3,
+        "Sekretaris Kabinet": 4,
+        "Sekretaris BEM": 5,
+        "Bendahara Umum": 6,
+        "Wakil Bendahara Umum": 7,
+        "Koordinator": 8,
+        "Sekretaris Koordinator": 9,
+        "Kepala Departemen": 10,
+        "Sekretaris Departemen": 11,
+        "Staff": 12,
     };
 
     return order[position] || 99;
