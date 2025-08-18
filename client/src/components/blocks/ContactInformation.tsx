@@ -1,5 +1,4 @@
 import { ContactInformationProps } from '@/lib/types'
-import { Instagram, Mail, MapPin, Phone, Twitter, Youtube } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 import StrapiImage from '../StrapiImage'
