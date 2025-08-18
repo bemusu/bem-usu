@@ -90,11 +90,20 @@ export interface ArticleProps {
     publishedAt: string
 }
 
+export interface MinistryProps {
+    id: number
+    documentId: string
+    ministry_name: string
+    slug: string
+    departments: DepartmentProps[]
+}
+
 export interface DepartmentProps {
     id: number
     documentId: string
     department_name: string
     slug: string
+    ministry: MinistryProps
 }
 
 export interface MemberProps {

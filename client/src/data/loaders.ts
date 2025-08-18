@@ -322,14 +322,35 @@ const getDepartmentMemberQuery = qs.stringify({
         photo: {
             fields: ['url', 'alternativeText']
         },
-        department: true
+        department: {
+            populate: {
+                ministry: true
+            }
+        }
+    }
+})
+
+export const getMinistries = async () => {
+    const apiRoute = '/api/ministries'
+    const url = new URL(apiRoute, BASE_URL)
+
+    return fetchAPI(url.href, {
+        method: 'GET',
+        next: { revalidate: 60 }
+    })
+}
+
+const getDepartmentsQuery = qs.stringify({
+    populate: {
+        ministry: true
     }
 })
 
 export const getDepartments = async () => {
     const apiRoute = '/api/departments'
     const url = new URL(apiRoute, BASE_URL)
-    
+    url.search = getDepartmentsQuery
+
     return fetchAPI(url.href, {
         method: 'GET',
         next: { revalidate: 60 }
@@ -340,7 +361,7 @@ export const getDepartmentMembers = async () => {
     const apiRoute = '/api/members'
     const url = new URL(apiRoute, BASE_URL)
     url.search = getDepartmentMemberQuery
-    
+
     return fetchAPI(url.href, {
         method: 'GET',
         next: { revalidate: 60 }
