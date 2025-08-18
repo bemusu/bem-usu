@@ -14,6 +14,30 @@ export interface BlocksAboutSection extends Struct.ComponentSchema {
   };
 }
 
+export interface BlocksContactInformation extends Struct.ComponentSchema {
+  collectionName: 'components_blocks_contact_informations';
+  info: {
+    displayName: 'Contact Information';
+  };
+  attributes: {
+    contact_items: Schema.Attribute.Component<'elements.social-link', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          min: 1;
+        },
+        number
+      >;
+    social_media: Schema.Attribute.Component<'elements.social-link', true>;
+    subtitle: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Kirimkan pertanyaan atau pesan Anda melalui formulir diberikut ini'>;
+    title: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Informasi Kontak'>;
+  };
+}
+
 export interface BlocksContent extends Struct.ComponentSchema {
   collectionName: 'components_blocks_contents';
   info: {
@@ -246,6 +270,7 @@ declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'blocks.about-section': BlocksAboutSection;
+      'blocks.contact-information': BlocksContactInformation;
       'blocks.content': BlocksContent;
       'blocks.featured-programs': BlocksFeaturedPrograms;
       'blocks.hero-section': BlocksHeroSection;

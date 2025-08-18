@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "reports",
+  "info": {
+    "singularName": "report",
+    "pluralName": "reports",
+    "displayName": "Report"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "nim": {
+      "type": "string",
+      "required": true
+    },
+    "faculty": {
+      "type": "string",
+      "required": true
+    },
+    "program_study": {
+      "type": "string",
+      "required": true
+    },
+    "whatsapp_number": {
+      "type": "string",
+      "required": true
+    },
+    "problem_category": {
+      "type": "string",
+      "required": true
+    },
+    "date": {
+      "type": "date",
+      "required": true
+    },
+    "message": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

@@ -26,7 +26,9 @@
         "blocks.about-section",
         "blocks.featured-programs",
         "blocks.logo-philosophy",
-        "blocks.quote-block"
+        "blocks.quote-block",
+        "blocks.content",
+        "blocks.contact-information"
       ],
       "required": true
     },

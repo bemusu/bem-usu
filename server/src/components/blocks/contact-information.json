@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_blocks_contact_informations",
+  "info": {
+    "displayName": "Contact Information"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Informasi Kontak",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "default": "Kirimkan pertanyaan atau pesan Anda melalui formulir diberikut ini",
+      "required": true
+    },
+    "contact_items": {
+      "type": "component",
+      "component": "elements.social-link",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    },
+    "social_media": {
+      "type": "component",
+      "component": "elements.social-link",
+      "repeatable": true
+    }
+  },
+  "config": {}
+}

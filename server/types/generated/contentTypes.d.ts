@@ -571,14 +571,20 @@ export interface ApiMemberMember extends Struct.CollectionTypeSchema {
       [
         'Ketua BEM',
         'Wakil Ketua BEM',
-        'Sekretaris Umum',
+        'Kepala Staff BEM',
+        'Sekretaris Kabinet',
+        'Sekretaris BEM',
         'Bendahara Umum',
-        'Menteri',
-        'Wakil Menteri',
-        'Staff Ahli',
+        'Wakil Bendahara Umum',
+        'Koordinator',
+        'Sekretaris Koordinator',
+        'Kepala Departemen',
+        'Sekretaris Departemen',
         'Staff',
       ]
-    >;
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'Staff'>;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -605,6 +611,8 @@ export interface ApiPagePage extends Struct.CollectionTypeSchema {
         'blocks.featured-programs',
         'blocks.logo-philosophy',
         'blocks.quote-block',
+        'blocks.content',
+        'blocks.contact-information',
       ]
     > &
       Schema.Attribute.Required;
@@ -651,6 +659,41 @@ export interface ApiProsedurProsedur extends Struct.CollectionTypeSchema {
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiReportReport extends Struct.CollectionTypeSchema {
+  collectionName: 'reports';
+  info: {
+    displayName: 'Report';
+    pluralName: 'reports';
+    singularName: 'report';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date & Schema.Attribute.Required;
+    faculty: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::report.report'
+    > &
+      Schema.Attribute.Private;
+    message: Schema.Attribute.Text & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    nim: Schema.Attribute.String & Schema.Attribute.Required;
+    problem_category: Schema.Attribute.String & Schema.Attribute.Required;
+    program_study: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    whatsapp_number: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -1171,6 +1214,7 @@ declare module '@strapi/strapi' {
       'api::member.member': ApiMemberMember;
       'api::page.page': ApiPagePage;
       'api::prosedur.prosedur': ApiProsedurProsedur;
+      'api::report.report': ApiReportReport;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;

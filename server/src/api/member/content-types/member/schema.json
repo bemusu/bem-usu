@@ -25,14 +25,20 @@
     },
     "position": {
       "type": "enumeration",
+      "required": true,
+      "default": "Staff",
       "enum": [
         "Ketua BEM",
         "Wakil Ketua BEM",
-        "Sekretaris Umum",
+        "Kepala Staff BEM",
+        "Sekretaris Kabinet",
+        "Sekretaris BEM",
         "Bendahara Umum",
-        "Menteri",
-        "Wakil Menteri",
-        "Staff Ahli",
+        "Wakil Bendahara Umum",
+        "Koordinator",
+        "Sekretaris Koordinator",
+        "Kepala Departemen",
+        "Sekretaris Departemen",
         "Staff"
       ]
     },
