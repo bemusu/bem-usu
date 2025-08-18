@@ -4,7 +4,7 @@ import qs from "qs"
 
 
 const BASE_URL = getStrapiUrl()
-const ARTICLE_PAGE_SIZE = 6
+const ARTICLE_PAGE_SIZE = 7
 
 const homePageQuery = qs.stringify({
     populate: {
