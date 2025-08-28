@@ -53,15 +53,15 @@ export default async function Home() {
                 </div>
             </section>
             {/* Main Content Container */}
-            <div className="container mx-auto p-4 text-gray-900 bg-gray-50">
+            <div className="container text-gray-900 bg-gray-50">
                 <div
-                    className="px-4 md:px-12 py-24 space-y-16"
+                    className="py-24 space-y-16"
                 >
                     <AboutSection {...aboutSectionBlock} />
 
                     {/* Trending Article */}
                     {featuredArticles && featuredArticles.length > 0 && (
-                        <section className="py-8 px-4">
+                        <section className="py-8">
                             <div className="bg-white/50 backdrop-blur-md rounded-2xl text-black p-8 md:px-16 md:py-12 shadow-xl max-w-7xl mx-auto">
                                 <div className="flex items-center justify-between mb-12">
                                     <h2 className="text-3xl md:text-4xl font-bold text-slate-800">Artikel Unggulan</h2>

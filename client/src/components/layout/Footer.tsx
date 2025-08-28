@@ -5,7 +5,8 @@ import StrapiImage from "../StrapiImage";
 export function Footer({
     quick_link_title,
     navigation_links,
-    bem_logo, cabinet_logo,
+    bem_logo, 
+    cabinet_logo,
     brand_name,
     university_name,
     social_links,
@@ -18,13 +19,13 @@ export function Footer({
             <div className="max-w-7xl mx-auto px-6 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center md:text-left">
                     <div className="md:text-left">
-                        <h3 className="font-bold text-lg mb-4">{quick_link_title}</h3>
+                        <h3 className="font-bold text-base md:text-lg mb-4">{quick_link_title}</h3>
                         <ul className="space-y-3 text-slate-600">
                             {navigation_links.map(link => (
-                                <li key={link.id}>
+                                <li key={`${link.text}-${link.id}`}>
                                     <Link
-                                        href={`${link.text}-${link.id}`}
-                                        className="hover:text-green-600 transition-colors"
+                                        href={link.href}
+                                        className="hover:text-green-600 transition-colors text-xs md:text-sm lg:text-base"
                                     >
                                         {link.text}
                                     </Link>
@@ -84,13 +85,19 @@ export function Footer({
                                     target="_blank"
                                     className="flex items-center justify-center md:justify-start gap-3"
                                 >
-                                    <StrapiImage
-                                        src={item.icon.url}
-                                        alt={item.icon.alternativeText || 'sosmed-icon'}
-                                        width={20}
-                                        height={20}
-                                    />
-                                    <span>{item.social_link.text}</span>
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex shrink-0 size-3 lg:size-5">
+                                            <StrapiImage
+                                                src={item.icon.url}
+                                                alt={item.icon.alternativeText || 'sosmed-icon'}
+                                                width={20}
+                                                height={20}
+                                            />
+                                        </div>
+                                        <div className="w-full max-w-xs">
+                                            <p className="text-xs md:text-sm lg:text-base break-words">{item.social_link.text}</p>
+                                        </div>
+                                    </div>
                                 </Link>
                             ))}
                         </address>

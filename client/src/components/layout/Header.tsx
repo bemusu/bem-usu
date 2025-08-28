@@ -20,28 +20,31 @@ export function Header({
 
     return (
         <header className="bg-white shadow-md sticky top-0 z-50">
-            <div className="container mx-auto flex items-center justify-between px-4 py-3">
+            <div className="container mx-auto flex items-center justify-between gap-3 px-4 py-3">
                 {/* Logo dan Nama Kabinet */}
                 <Link href="/" className="flex items-center gap-3" onClick={() => setIsMenuOpen(false)}>
                     {/* Logo BEM USU */}
-                    <StrapiImage
-                        src={bem_logo.image.url}
-                        alt={bem_logo.image.alternativeText || "logo-bem-usu"}
-                        className="h-10 w-10 md:h-14 md:w-14"
-                        width={56} height={56}
-                    />
-                    {/* Logo Kabinet */}
-                    {cabinet_logo && (
+                    <div className='flex shrink-0 size-10 md:size-12 lg:size-14'>
                         <StrapiImage
-                            src={cabinet_logo.image.url}
-                            alt={cabinet_logo.image.alternativeText || "logo-kabinet-bem"}
-                            className="h-10 w-10 md:h-14 md:w-14"
+                            src={bem_logo.image.url}
+                            alt={bem_logo.image.alternativeText || "logo-bem-usu"}
+                            className="size-10 md:size-12 lg:size-14"
                             width={56} height={56}
                         />
+                    </div>
+                    {/* Logo Kabinet */}
+                    {cabinet_logo && (
+                        <div className='flex shrink-0 size-10 md:size-12 lg:size-14'>
+                            <StrapiImage
+                                src={cabinet_logo.image.url}
+                                alt={cabinet_logo.image.alternativeText || "logo-kabinet-bem"}
+                                className="size-10 md:size-12 lg:size-14"
+                                width={56} height={56}
+                            />
+                        </div>
                     )}
                     <div className="leading-tight text-gray-800">
-                        <p className="text-sm md:text-lg font-bold tracking-wide max-w-36">{title}</p>
-                        {/* <p className="text-sm md:text-lg font-bold tracking-wide">BERSAMA</p> */}
+                        <p className="text-sm md:text-base lg:text-lg font-bold tracking-wide max-w-36">{title}</p>
                     </div>
                 </Link>
 
@@ -52,7 +55,7 @@ export function Header({
                             key={link.id}
                             href={link.href}
                             className={clsx(
-                                "text-gray-600 hover:text-green-600 transition-colors",
+                                "text-gray-600 hover:text-green-600 transition-colors text-sm",
                                 pathname === link.href && 'text-green-600'
                             )}
                             target={clsx(link.isExternal && '_blank')}

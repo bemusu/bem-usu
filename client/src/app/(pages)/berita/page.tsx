@@ -1,11 +1,11 @@
 'use client'
 
 import Link from "next/link";
-import { Calendar, AlertTriangle, RefreshCw } from "lucide-react";
+import { Calendar, AlertTriangle, RefreshCw, ChevronDown } from "lucide-react";
 import { getArticles, getCategories, getPageBySlug } from "@/data/loaders";
 import { ArticleProps, Block, CategoryProps } from "@/lib/types";
 import { blockRenderer } from "@/components/BlockRenderer";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import StrapiImage from "@/components/StrapiImage";
 import { FeaturedArticleSkeleton } from "@/components/skeletons/FeaturedArticleSkeleton";
 import { ArticleCardSkeleton } from "@/components/skeletons/ArticleCardSkeleton";
@@ -37,6 +37,10 @@ export default function BeritaPage() {
     const [searchTerm, setSearchTerm] = useState<string>("")
     const [selectedCategory, setSelectedCategory] = useState<string>("")
     const [error, setError] = useState<string>('')
+
+    // State baru untuk dropdown filter
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
     const handleRefresh = () => {
         window.location.reload();
@@ -103,7 +107,7 @@ export default function BeritaPage() {
             }
 
             setArticles(data)
-            setPagination(meta.pagination)
+            if (meta) setPagination(meta.pagination)
         } catch (error) {
             setError("Terjadi kesalahan. Harap periksa koneksi anda!")
             console.error(`[fetchArticles] Error: ${error}`)
@@ -128,6 +132,21 @@ export default function BeritaPage() {
         }
     }, [articles])
 
+
+    // Logika untuk menutup dropdown saat klik di luar area dropdown
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [dropdownRef]);
+
+
     const heroBlock = blocks.find(block => block.__component === 'blocks.hero-section')
     const otherArticles = articles.filter(article => article.id !== randomFeaturedArticle?.id);
 
@@ -139,6 +158,17 @@ export default function BeritaPage() {
             behavior: 'smooth'
         })
     }
+
+    const handleCategorySelect = (slug: string) => {
+        setSelectedCategory(slug);
+        setIsDropdownOpen(false); // Tutup dropdown setelah memilih
+    };
+
+    // Logika untuk membagi kategori
+    const VISIBLE_CATEGORIES_COUNT = 5; // Atur berapa kategori yang mau ditampilkan
+    const visibleCategories = categories.slice(0, VISIBLE_CATEGORIES_COUNT);
+    const dropdownCategories = categories.slice(VISIBLE_CATEGORIES_COUNT);
+
 
     return (
         <div>
@@ -209,23 +239,77 @@ export default function BeritaPage() {
                             {isCategoriesLoading ? <CategoryFilterSkeleton /> : (
                                 <div className="flex flex-wrap items-center justify-between gap-4 mb-12">
                                     <h3 className="text-3xl font-bold text-slate-800">Berita Lainnya</h3>
-                                    <div className="flex flex-wrap gap-2">
-                                        <button
-                                            onClick={() => setSelectedCategory("")}
-                                            className={`px-4 py-2 text-sm font-semibold rounded-full ${selectedCategory === "" ? 'bg-green-600 text-white' : 'bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors'}`}
-                                        >
-                                            Semua
-                                        </button>
-                                        {categories.map(category => (
+                                    <div className="w-full">
+                                        {/* Tampilan Mobile: Scrollable Horizontal */}
+                                        <div className="md:hidden w-full">
+                                            <div className="flex items-center overflow-x-auto pb-2 gap-2 scrollbar-hide">
+                                                <button
+                                                    onClick={() => handleCategorySelect("")}
+                                                    // flex-shrink-0 mencegah tombol menyusut
+                                                    className={`flex-shrink-0 px-4 py-2 text-sm font-semibold rounded-full ${selectedCategory === "" ? 'bg-green-600 text-white' : 'bg-slate-200 text-slate-700'}`}
+                                                >
+                                                    Semua
+                                                </button>
+                                                {/* Di mobile, kita render semua kategori tanpa membaginya */}
+                                                {categories.map(category => (
+                                                    <button
+                                                        key={category.documentId}
+                                                        onClick={() => handleCategorySelect(category.slug)}
+                                                        className={`flex-shrink-0 px-4 py-2 text-sm font-semibold rounded-full ${selectedCategory === category.slug ? 'bg-green-600 text-white' : 'bg-slate-200 text-slate-700'}`}
+                                                    >
+                                                        {category.category_name}
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+
+                                        {/* Tampilan Desktop: Dropdown "Lainnya" (Logika Anda sebelumnya) */}
+                                        <div className="hidden md:flex flex-wrap gap-2">
                                             <button
-                                                key={category.documentId}
-                                                onClick={() => setSelectedCategory(category.slug)}
-                                                className={`px-4 py-2 text-sm font-semibold rounded-full ${selectedCategory === category.slug ? 'bg-green-600 text-white' : 'bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors'}`}
+                                                onClick={() => handleCategorySelect("")}
+                                                className={`px-4 py-2 text-sm font-semibold rounded-full ${selectedCategory === "" ? 'bg-green-600 text-white' : 'bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors'}`}
                                             >
-                                                {category.category_name}
+                                                Semua
                                             </button>
-                                        ))}
+                                            {/* Menggunakan logika visibleCategories untuk desktop */}
+                                            {visibleCategories.map(category => (
+                                                <button
+                                                    key={category.documentId}
+                                                    onClick={() => handleCategorySelect(category.slug)}
+                                                    className={`px-4 py-2 text-sm font-semibold rounded-full ${selectedCategory === category.slug ? 'bg-green-600 text-white' : 'bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors'}`}
+                                                >
+                                                    {category.category_name}
+                                                </button>
+                                            ))}
+
+                                            {dropdownCategories.length > 0 && (
+                                                <div className="relative" ref={dropdownRef}>
+                                                    <button
+                                                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                                                        className="flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-full bg-slate-200 text-slate-700 hover:bg-slate-300 transition-colors"
+                                                    >
+                                                        Lainnya
+                                                        <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                                                    </button>
+                                                    {isDropdownOpen && (
+                                                        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl z-10 py-2 border max-h-36 overflow-y-auto">
+                                                            {dropdownCategories.map(category => (
+                                                                <a
+                                                                    key={category.documentId}
+                                                                    onClick={() => handleCategorySelect(category.slug)}
+                                                                    className={`block w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 cursor-pointer ${selectedCategory === category.slug ? 'font-bold text-green-600' : ''}`}
+                                                                >
+                                                                    {category.category_name}
+                                                                </a>
+                                                            ))}
+                                                        </div>
+                                                    )}
+                                                </div>
+                                            )}
+                                        </div>
                                     </div>
+                                    {/* ===================== AKHIR BLOK FILTER BARU ===================== */}
+                                    {/* ===================== AKHIR BLOK FILTER BARU ===================== */}
                                 </div>
                             )}
 

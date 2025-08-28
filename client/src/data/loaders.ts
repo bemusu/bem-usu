@@ -173,6 +173,9 @@ const globalSettingsQuery = qs.stringify({
                 bem_logo: {
                     fields: ['url', 'alternativeText']
                 },
+                cabinet_logo: {
+                    fields: ['url', 'alternativeText']
+                },
                 social_links: {
                     populate: {
                         icon: {
