@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "departments",
+  "info": {
+    "singularName": "department",
+    "pluralName": "departments",
+    "displayName": "Department"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "department_name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "department_name",
+      "required": true
+    },
+    "ministry": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::ministry.ministry",
+      "inversedBy": "departments"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "collectionName": "components_layout_footers",
+  "info": {
+    "displayName": "Footer"
+  },
+  "options": {},
+  "attributes": {
+    "quick_link_title": {
+      "type": "string",
+      "default": "Tautan Cepat",
+      "required": true
+    },
+    "navigation_links": {
+      "type": "component",
+      "component": "elements.link",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    },
+    "bem_logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "cabinet_logo": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "brand_name": {
+      "type": "string",
+      "default": "Pemerintahan Mahasiswa",
+      "required": true
+    },
+    "university_name": {
+      "type": "string",
+      "default": "Universitas Sumatera Utara",
+      "required": true
+    },
+    "social_links": {
+      "type": "component",
+      "component": "elements.social-link",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    },
+    "contact_info_title": {
+      "type": "string",
+      "default": "Info Kontak",
+      "required": true
+    },
+    "contact_items": {
+      "type": "component",
+      "component": "elements.social-link",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    },
+    "copyright": {
+      "type": "text",
+      "default": "Copyright © 2025 BEM Universitas Sumatera Utara - All rights reserved.",
+      "required": true
+    }
+  },
+  "config": {}
+}

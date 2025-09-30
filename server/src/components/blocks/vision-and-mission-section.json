@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_blocks_vision_and_mission_sections",
+  "info": {
+    "displayName": "Vision and Mission Section"
+  },
+  "options": {},
+  "attributes": {
+    "eyebrow_title": {
+      "type": "string",
+      "required": true
+    },
+    "vision_title": {
+      "type": "string",
+      "required": true
+    },
+    "vision_description": {
+      "type": "richtext",
+      "required": true
+    },
+    "mission_title": {
+      "type": "string",
+      "required": true
+    },
+    "mission_items": {
+      "type": "component",
+      "component": "elements.mission-item",
+      "repeatable": true,
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  },
+  "config": {}
+}

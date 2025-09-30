@@ -1,0 +1,38 @@
+{
+  "collectionName": "components_layout_headers",
+  "info": {
+    "displayName": "Header"
+  },
+  "options": {},
+  "attributes": {
+    "bem_logo": {
+      "type": "component",
+      "component": "elements.logo",
+      "repeatable": false,
+      "required": true
+    },
+    "cabinet_logo": {
+      "type": "component",
+      "component": "elements.logo",
+      "repeatable": false
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "navigation_links": {
+      "type": "component",
+      "component": "elements.link",
+      "repeatable": true,
+      "required": true,
+      "min": 1
+    },
+    "cta": {
+      "type": "component",
+      "component": "elements.link",
+      "repeatable": false,
+      "required": true
+    }
+  },
+  "config": {}
+}
